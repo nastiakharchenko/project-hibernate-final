@@ -2,6 +2,8 @@ package com.javarush.domain;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(schema = "world", name = "city")
 public class City {
@@ -58,5 +60,17 @@ public class City {
 
     public void setPopulation(Integer population) {
         this.population = population;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City city)) return false;
+        return Objects.equals(id, city.id) && Objects.equals(name, city.name) && Objects.equals(country, city.country) && Objects.equals(district, city.district) && Objects.equals(population, city.population);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, country, district, population);
     }
 }

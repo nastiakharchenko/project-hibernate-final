@@ -3,6 +3,7 @@ package com.javarush.redis;
 import com.javarush.domain.Continent;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Set;
 
 public class CityCountry {
@@ -124,5 +125,17 @@ public class CityCountry {
 
     public void setLanguages(Set<Language> languages) {
         this.languages = languages;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CityCountry that)) return false;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(district, that.district) && Objects.equals(population, that.population) && Objects.equals(countryCode, that.countryCode) && Objects.equals(alternativeCountryCode, that.alternativeCountryCode) && Objects.equals(countryName, that.countryName) && Objects.equals(countryRegion, that.countryRegion) && Objects.equals(countrySurfaceArea, that.countrySurfaceArea) && Objects.equals(countryPopulation, that.countryPopulation) && Objects.equals(languages, that.languages);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, district, population, countryCode, alternativeCountryCode, countryName, countryRegion, countrySurfaceArea, countryPopulation, languages);
     }
 }
